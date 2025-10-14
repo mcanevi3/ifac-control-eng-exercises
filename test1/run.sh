@@ -1,14 +1,7 @@
 #!/bin/sh
-
 file="digits.tex"
-
 #\def\x{5}
 #\def\y{2}
-#\newcommand\showresults{}
-
-#x=1
-#y=2
-
 text1="";
 text2="";
 
@@ -19,8 +12,7 @@ do
 			text1=$text1"\def\x{"$x"}";
 			text2=$text2"\def\y{"$y"}";
 			
-			# echo -e $text1"\n"$text2 > $file
-			echo $text1$text2"\\newcommand\\showresults{}" > $file
+			echo -e $text1"\n"$text2 > $file
 			eval "pdflatex -output-directory='Files' -jobname=$x$y main.tex "
 			eval "rm Files/*.log"
 			eval "rm Files/*.aux"
