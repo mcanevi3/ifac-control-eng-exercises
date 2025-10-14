@@ -1,0 +1,44 @@
+\def\m{\pgfmathparse{int(\x+\y+1)}\pgfmathresult}
+\def\b{\pgfmathparse{int(5*((\x+1)/(\y+1)+1))}\pgfmathresult}
+\def\k{\pgfmathparse{int(1250*((\x+1)/(\y+1)+1))}\pgfmathresult}
+
+\pgfkeys{/pgf/number format/.cd,fixed,fixed zerofill,precision=2}
+\rhead{$x:\x\, y:\y$}
+
+\begin{gather*}
+\m\ddot{y}+\b \dot{y}+\k y = u
+\end{gather*}
+
+
+\begin{figure}[!htb]
+\centering
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+    \node [input, name=input] {};
+    \node [sum, right of=input] (sum1) {};
+    \node [block, right of=sum1, minimum width=1.5cm, node distance=1.5cm] (controller1) {$k$};
+     \node [block, right of=controller1, minimum width=2cm, node distance=3cm] (sys) {$\frac{1}{\m s^2+\b s+\k}$};
+    \node [output, right of=sys, name=y] {};
+    \node[input, below of=sum1, name=feed1, node distance=1.5cm]{};
+    
+ \draw [->] (input) -- node[name=r] {$r$} (sum1);
+  \draw [->] (sum1) -- node[name=e] {$e$} (controller1);
+ \draw [->] (controller1) --  node[name=u] {$u$} (sys);
+     \draw [->] (sys) -- node[name=y2]  {$y$} (y);
+
+   \draw [-] (y2) |- (feed1);
+  \draw [->] (feed1) -| node[pos=0.9] {$-$} 
+ node [near end] {} (sum1);
+
+\end{tikzpicture}
+\end{figure}
+
+\ifdefined\showresults
+   $m:\m$
+   $b:\b$
+   $k:\k$
+\fi
+\unless\ifdefined\showresults
+   $m:$
+   $b:$
+   $k:$
+\fi
