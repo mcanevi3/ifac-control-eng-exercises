@@ -1,0 +1,27 @@
+\def\pzero{\pgfmathparse{4+(8-4)*(10*\xone+\xzero)/99}\pgfmathresult}
+\def\pone{\pgfmathparse{3+(5-3)*(10*\xone+\xzero)/99}\pgfmathresult}
+
+\pgfkeys{/pgf/number format/.cd,fixed,fixed zerofill,precision=2}
+\rhead{$x_1:\xone\, x_0:\xzero$}
+A open-loop transfer function is given as,
+\begin{gather*}
+G(s)=\frac{1}{s^3+2s^2+\pone s+\pzero}
+\end{gather*}
+which of the following PI-controllers does not stabilize the system in a closed-loop unit feedback structure?
+
+\begin{enumerate}[label=(\alph*)]
+   \item $F(s)=-2.5+\frac{0.25}{s}$
+   \item $F(s)=-2.5+\frac{0.5}{s}$
+   \item $F(s)=-3.5+\frac{0.25}{s}$
+   \item $F(s)=-3.5+\frac{0.5}{s}$
+   \item $F(s)=-2.2+\frac{0.5}{s}$
+\end{enumerate}
+
+\ifdefined\showresults
+   $p_0:\pzero$
+   $p_1:\pone$
+\fi
+\unless\ifdefined\showresults
+   $p_0:$
+   $p_1:$
+\fi
