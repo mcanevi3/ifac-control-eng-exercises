@@ -5,23 +5,25 @@
 \rhead{$x_1:\xone\, x_0:\xzero$}
 A open-loop transfer function is given as,
 \begin{gather*}
-G(s)=\frac{1}{s^3+2s^2+\pone s+\pzero}
+G(s)=\frac{1}{s^3+2.0s^2+\pone s+\pzero}
 \end{gather*}
 which of the following PI-controllers does not stabilize the system in a closed-loop unit feedback structure?
 
 \begin{enumerate}[label=(\alph*)]
-   \item $F(s)=-2.5+\frac{0.25}{s}$
-   \item $F(s)=-2.5+\frac{0.5}{s}$
-   \item $F(s)=-3.5+\frac{0.25}{s}$
-   \item $F(s)=-3.5+\frac{0.5}{s}$
-   \item $F(s)=-2.2+\frac{0.5}{s}$
+   \item $F(s)=\pgfmathparse{-2.5-(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{0.25+0.25*(10*\xone+\xzero)/99}\pgfmathresult}{s}$ % correct answer
+
+   \item $F(s)=\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+2*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+
+   \item $F(s)=\pgfmathparse{-1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{2+2*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+   
+   \item $F(s)=\pgfmathparse{-1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+
+   \item $F(s)=\pgfmathparse{-6+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+   
 \end{enumerate}
 
 \ifdefined\showresults
-   $p_0:\pzero$
-   $p_1:\pone$
+   Answer:\quad $F(s)=\pgfmathparse{-2.5-(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{0.25+0.25*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
 \fi
 \unless\ifdefined\showresults
-   $p_0:$
-   $p_1:$
 \fi

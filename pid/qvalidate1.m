@@ -17,11 +17,13 @@ title("Step Response");
 ax1=gca;
 
 for p1=p1vec
-    for p0=p0vec
+    for i=1:length(p0vec)
+        p0=p0vec(i);
         Gs=tf(1,[1,2,p1,p0]);
         Ts=feedback(Fs*Gs,1);
-        [y,t]=step(Ts);
-        plot(ax1,t,y);
+        [y,t]=step(Ts,200);
+        col=[i/length(p0vec),0,0];
+        plot(ax1,t,y,'Color',col);
         if ~isstable(Ts)
             disp("p0:"+string(p0)+" p1:"+string(p1))
         end
@@ -30,4 +32,4 @@ end
 xlim(ax1,[0,200]);
 ylim(ax1,[0,2]);
 
- print("center_stable.png","-dpng","-r150")
+print("center_stable.png","-dpng","-r150")

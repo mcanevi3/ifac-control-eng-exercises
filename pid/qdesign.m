@@ -20,6 +20,7 @@ pol2=subs(pcs,[p0,p1],[p0max,p1min]);
 pol3=subs(pcs,[p0,p1],[p0max,p1max]);
 pol4=subs(pcs,[p0,p1],[p0min,p1min]);
 
+
 cond1=routh(coeffs(pol1,s,'all'));
 cond1=simplifyFraction(cond1);
 cond2=routh(coeffs(pol2,s,'all'));
@@ -73,4 +74,5 @@ plot(mean([kpsolmin,kpsolmax]),mean([kisolmin,kisolmax]),'rx','LineWidth',2,'Mar
 plot(-2.2,0.5,'cx','LineWidth',2,'MarkerSize',2);
 
 legend("p_1(s)","p_2(s)","p_3(s)","p_4(s)","stability","solution region","a solution","unstable")
-% print("stability.png","-dpng","-r150")
+
+print("stability.png","-dpng","-r150")
