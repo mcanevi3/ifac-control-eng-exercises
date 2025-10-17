@@ -6,8 +6,8 @@ p0vec=p0min+(p0max-p0min)*(10*x1+x0)/99;
 p1vec=p1min+(p1max-p1min)*(10*x1+x0)/99;
 
 % unstable 
-kp=-2.2;
-ki=0.5;
+kp=mean(kunstable4(1:2));
+ki=mean(kunstable4(3:4));
 
 Fs=tf([kp ki],[1 0]);
 figure(1);clf;hold on;grid on;
@@ -24,7 +24,7 @@ for p1=p1vec
         [y,t]=step(Ts,200);
         col=[i/length(p0vec),0,0];
         plot(ax1,t,y,'Color',col);
-        if ~isstable(Ts)
+        if isstable(Ts)
             disp("p0:"+string(p0)+" p1:"+string(p1))
         end
     end

@@ -30,8 +30,8 @@ cond3=simplifyFraction(cond3);
 cond4=routh(coeffs(pol4,s,'all'));
 cond4=simplifyFraction(cond4);
 
-kpvec=-8:0.01:6;
-kivec=0:0.01:6;
+kpvec=-12:0.01:8;
+kivec=0:0.01:4;
 [kpmat,kimat]=meshgrid(kpvec,kivec);
 
 temp=(cond1(1)>0)&(cond1(2)>0)&(cond1(3)>0)&(cond1(4)>0)&(cond1(5)>0);
@@ -49,8 +49,8 @@ stab4=fcond4(kpmat,kimat);
 stabTot=stab1&stab2&stab3&stab4;
 
 
-solReg=@(kp,ki)(kp>=kpsolmin)&(kp<=kpsolmax)&(ki>=kisolmin)&(ki<=kisolmax);
-stabSol=solReg(kpmat,kimat);
+solReg=@(kp,ki,kvec)(kp>=kvec(1))&(kp<=kvec(2))&(ki>=kvec(3))&(ki<=kvec(4));
+stabSol=solReg(kpmat,kimat,kstable);
 
 figure(1);clf;hold on;grid on;
 xlabel("k_p");ylabel("k_i");title("Stability");
@@ -66,13 +66,37 @@ contourf(kpmat, kimat, stab4, [0.5 1], 'LineColor','none',...
 contourf(kpmat, kimat, stabTot, [0.5 1], 'LineColor','none',...
 'FaceColor','k','FaceAlpha',1);
 
-fill([kpsolmin kpsolmax kpsolmax kpsolmin], ...
-     [kisolmin kisolmin kisolmax kisolmax], ...
+% fill([kpsolmin kpsolmax kpsolmax kpsolmin], ...
+%      [kisolmin kisolmin kisolmax kisolmax], ...
+%% stable
+fill([kstable(1) kstable(2) kstable(2) kstable(1)], ...
+     [kstable(3) kstable(3) kstable(4) kstable(4)], ...
      [1 1 1], 'FaceAlpha', 1, 'EdgeColor', 'none');
-plot(mean([kpsolmin,kpsolmax]),mean([kisolmin,kisolmax]),'rx','LineWidth',2,'MarkerSize',2);
 
-plot(-2.2,0.5,'cx','LineWidth',2,'MarkerSize',2);
+%% unstable-1
+kunstable=kunstable1;
+fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
+[kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
+     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'none');
 
-legend("p_1(s)","p_2(s)","p_3(s)","p_4(s)","stability","solution region","a solution","unstable")
+%% unstable-2
+kunstable=kunstable2;
+fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
+[kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
+     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'none');
+
+%% unstable-3
+kunstable=kunstable3;
+fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
+[kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
+     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'none');
+
+%% unstable-4
+kunstable=kunstable4;
+fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
+[kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
+     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'none');
+
+legend("p_1(s)","p_2(s)","p_3(s)","p_4(s)","stability","solution region","unstable")
 
 print("stability.png","-dpng","-r150")

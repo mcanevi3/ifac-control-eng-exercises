@@ -6,8 +6,8 @@ p0vec=p0min+(p0max-p0min)*(10*x1+x0)/99;
 p1vec=p1min+(p1max-p1min)*(10*x1+x0)/99;
 
 % center stable
-kp=kpsolmax;
-ki=kisolmax;
+kp=mean(kstable(1:2));
+ki=mean(kstable(3:4));
 
 Fs=tf([kp ki],[1 0]);
 figure(1);clf;hold on;grid on;
@@ -29,7 +29,7 @@ for p1=p1vec
         end
     end
 end
-xlim(ax1,[0,200]);
-ylim(ax1,[0,2]);
+xlim(ax1,[0,40]);
+ylim(ax1,[0,1.1]);
 
 print("center_stable.png","-dpng","-r150")
