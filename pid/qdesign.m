@@ -71,31 +71,31 @@ contourf(kpmat, kimat, stabTot, [0.5 1], 'LineColor','none',...
 %% stable
 fill([kstable(1) kstable(2) kstable(2) kstable(1)], ...
      [kstable(3) kstable(3) kstable(4) kstable(4)], ...
-     [1 1 1], 'FaceAlpha', 1, 'EdgeColor', 'none');
+     [1 1 1], 'FaceAlpha', 0.8, 'EdgeColor', 'none');
 
 %% unstable-1
 kunstable=kunstable1;
 fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
 [kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
-     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'none');
+     [1 0 0], 'FaceAlpha', 0.6, 'EdgeColor', 'none');
 
 %% unstable-2
 kunstable=kunstable2;
 fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
 [kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
-     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'none');
+     [1 0 0], 'FaceAlpha', 0.6, 'EdgeColor', 'none');
 
 %% unstable-3
 kunstable=kunstable3;
 fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
 [kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
-     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'none');
+     [1 0 0], 'FaceAlpha', 0.6, 'EdgeColor', 'none');
 
 %% unstable-4
 kunstable=kunstable4;
 fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
 [kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
-     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'none');
+     [1 0 0], 'FaceAlpha', 0.6, 'EdgeColor', 'none');
 
 legend("p_1(s)","p_2(s)","p_3(s)","p_4(s)","stability","solution region","unstable")
 

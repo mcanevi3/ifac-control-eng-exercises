@@ -1,29 +1,19 @@
 \def\pzero{\pgfmathparse{4+(8-4)*(10*\xone+\xzero)/99}\pgfmathresult}
 \def\pone{\pgfmathparse{3+(5-3)*(10*\xone+\xzero)/99}\pgfmathresult}
 
-\pgfkeys{/pgf/number format/.cd,fixed,fixed zerofill,precision=2}
-\rhead{$x_1:\xone\, x_0:\xzero$}
-A open-loop transfer function is given as,
+\question[100] An open-loop transfer function is given as,
 \begin{gather*}
 G(s)=\frac{1}{s^3+2.0s^2+\pone s+\pzero}
 \end{gather*}
-which of the following PI-controllers does not stabilize the system in a closed-loop unit feedback structure?
+which of the following PI-controllers stabilizes the system in a closed-loop unit feedback structure?
 
-\begin{enumerate}[label=(\alph*)]
-   \item $F(s)=\pgfmathparse{-2.5-(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{0.25+0.25*(10*\xone+\xzero)/99}\pgfmathresult}{s}$ % correct answer
+\begin{randomizechoices}
+\choice $F(s)=\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+2*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
 
-   \item $F(s)=\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+2*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+\choice $F(s)=\pgfmathparse{-1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{2+2*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+\choice $F(s)=\pgfmathparse{-1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+\choice $F(s)=\pgfmathparse{-6+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
 
-   \item $F(s)=\pgfmathparse{-1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{2+2*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
-   
-   \item $F(s)=\pgfmathparse{-1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+\CorrectChoice $F(s)=\pgfmathparse{-2.5-(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{0.25+0.25*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+\end{randomizechoices}
 
-   \item $F(s)=\pgfmathparse{-6+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
-   
-\end{enumerate}
-
-\ifdefined\showresults
-   Answer:\quad $F(s)=\pgfmathparse{-2.5-(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{0.25+0.25*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
-\fi
-\unless\ifdefined\showresults
-\fi
