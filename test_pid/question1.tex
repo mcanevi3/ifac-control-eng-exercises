@@ -8,12 +8,15 @@ G(s)=\frac{1}{s^3+2.0s^2+\pone s+\pzero}
 which of the following PI-controllers stabilizes the system in a closed-loop unit feedback structure?
 
 \begin{randomizechoices}
-\choice $F(s)=\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+2*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+\choice $F(s)=\pgfmathparse{0.5+3*(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
 
-\choice $F(s)=\pgfmathparse{-1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{2+2*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
-\choice $F(s)=\pgfmathparse{-1+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
-\choice $F(s)=\pgfmathparse{-6+(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+\choice $F(s)=\pgfmathparse{-10+2*(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
 
-\CorrectChoice $F(s)=\pgfmathparse{-2.5-(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{0.25+0.25*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+\choice $F(s)=\pgfmathparse{-10+3*(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{2.5+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+
+\choice $F(s)=\pgfmathparse{0.5+2*(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{2.5+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+
+
+\CorrectChoice $F(s)=\pgfmathparse{-2.5-(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{0.5+0.5*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
 \end{randomizechoices}
 
