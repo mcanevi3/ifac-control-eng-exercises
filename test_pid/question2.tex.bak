@@ -1,0 +1,81 @@
+\def\zetaone{\pgfmathparse{2+(5-2)*(10*\xone+\xzero)/99}\pgfmathresult}
+\def\wnone{\pgfmathparse{4+(1-4)*(10*\xone+\xzero)/99}\pgfmathresult}
+
+\def\zetatwo{\pgfmathparse{0.1+(0.8-0.1)*(10*\xone+\xzero)/99}\pgfmathresult}
+\def\wntwo{\pgfmathparse{5+(2-5)*(10*\xone+\xzero)/99}\pgfmathresult}
+
+
+% \pgfmathsetmacro{\zetaoneval}{2+(5-2)*(10*\xone+\xzero)/99}
+% \pgfmathsetmacro{\wnoneval}{4+(1-4)*(10*\xone+\xzero)/99}
+
+% now declare a pgfmath function of one variable (x)
+% \pgfmathdeclarefunction{myresp}{1}{%
+%   % #1 is x
+%   \pgfmathparse{%
+%     (exp(-4*(#1))/(16 + (\wnone)^2 - 8*(\wnone)*(\zetaone))
+%      - (exp(-(#1)*(\wnone)*(\zetaone)) *
+%         (cosh((#1)*(\wnone)*sqrt(-1+(\zetaone)^2))
+%          + (sinh((#1)*(\wnone)*sqrt(-1+(\zetaone)^2))
+%             * (-4 + (\wnone)*(\zetaone))
+%            )/((\wnone)*sqrt((\zetaone)^2 - 1))
+%         )
+%        ) / (16 + (\wnone)^2 - 8*(\wnone)*(\zetaone))
+%     )
+%   }%
+%   \pgfmathresult%
+% }
+
+% \pgfmathparse{myresp(2)} \pgfmathprintnumber{\pgfmathresult}
+
+\pgfmathprintnumber{\zetaone}
+
+% \question[50] Which of the following impulse responses do not overshoot in the step response?
+
+% \begin{tikzpicture}
+% \begin{axis}[
+%     width=12cm,
+%     height=7cm,
+%     xlabel={$t$},
+%     ylabel={$y(t)$},
+%     grid=both,
+%     legend style={at={(0.5,-0.15)},anchor=north},
+%     domain=0:5,
+%     samples=300
+% ]
+% % --- First curve ---
+%  \addplot[
+%      thick,
+%      blue
+%  ] {  \addplot {myresp(x)}; };
+% % \addlegendentry{($\zeta_1$, $\omega_{n1}$)}
+
+% % % --- Second curve ---
+% % \addplot[
+% %     thick,
+% %     red,
+% %     dashed
+% % ] 
+% % { exp(-4*x)/(16 + \wntwo^2 - 8*\wntwo*\zetatwo)
+% %   - (exp(-x*\wntwo*\zetatwo) *
+% %       (cosh(x*\wntwo*sqrt(-1+\zetatwo^2))
+% %        + (sinh(x*\wntwo*sqrt(-1+\zetatwo^2)) * (-4 + \wntwo*\zetatwo))
+% %          /(\wntwo*sqrt(\zetatwo^2 - 1)))
+% %     ) / (16 + \wntwo^2 - 8*\wntwo*\zetatwo)
+% % };
+% % \addlegendentry{($\zeta_2$, $\omega_{n2}$)}
+
+% \end{axis}
+% \end{tikzpicture}
+
+
+% % exp(-4*t)/(16 + wn^2 - 8*wn*zeta) - (exp(-t*wn*zeta)*(cosh(t*wn*(- 1 + zeta^2)^(1/2)) + (sinh(t*wn*(- 1 + zeta^2)^(1/2))*(- 4 + wn*zeta))/(wn*(zeta^2 - 1)^0.5)))/(16 + wn^2 - 8*wn*zeta)
+
+% % \begin{randomizechoices}
+% % \choice $F(s)=\pgfmathparse{0.5+2*(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{2.5+(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+
+% % \CorrectChoice $F(s)=\pgfmathparse{-2.5-(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{0.5+0.5*(10*\xone+\xzero)/99}\pgfmathresult}{s}$
+% % \end{randomizechoices}
+
+
+% \pgfmathparse{myresp(1)}
+% \pgfmathprintnumber{\pgfmathresult}

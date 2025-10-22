@@ -1,0 +1,69 @@
+
+\pgfmathsetmacro{\zetaone}{2+(5-2)*(10*\xone+\xzero)/99}
+\pgfmathsetmacro{\wnone}{4+(1-4)*(10*\xone+\xzero)/99}
+
+\pgfmathsetmacro{\zetatwo}{0.1+(0.8-0.1)*(10*\xone+\xzero)/99}
+\pgfmathsetmacro{\wntwo}{5+(2-5)*(10*\xone+\xzero)/99}
+
+
+\question[50] Which of the following does not overshoot?
+\begin{randomizechoices}
+\CorrectChoice \mbox{ \begin{tikzpicture}
+  [
+  declare function={
+    myresp(\x) = (exp(-4*(\x))/(16 + (\wnone)^2 - 8*(\wnone)*(\zetaone))
+     - (exp(-(\x)*(\wnone)*(\zetaone)) *
+        (cosh((\x)*(\wnone)*sqrt(-1+(\zetaone)^2))
+         + (sinh((\x)*(\wnone)*sqrt(-1+(\zetaone)^2))
+            * (-4 + (\wnone)*(\zetaone))
+           )/((\wnone)*sqrt((\zetaone)^2 - 1))
+        )
+       ) / (16 + (\wnone)^2 - 8*(\wnone)*(\zetaone))
+    );
+  }
+]
+
+\begin{axis}[
+  xlabel={$t$},
+  ylabel={$y(t)$},
+  grid=both,
+  domain=0:1.5,
+  samples=300,
+  thick
+]
+\addplot[blue]{myresp(x)};
+\addlegendentry{Response}
+\end{axis}
+\end{tikzpicture}
+}
+
+\choice  \mbox{ \begin{tikzpicture}
+  [
+  declare function={
+    myresp(\x) = (exp(-4*(\x))/(16 + (\wnone)^2 - 8*(\wnone)*(\zetaone))
+     - (exp(-(\x)*(\wnone)*(\zetaone)) *
+        (cosh((\x)*(\wnone)*sqrt(-1+(\zetaone)^2))
+         + (sinh((\x)*(\wnone)*sqrt(-1+(\zetaone)^2))
+            * (-4 + (\wnone)*(\zetaone))
+           )/((\wnone)*sqrt((\zetaone)^2 - 1))
+        )
+       ) / (16 + (\wnone)^2 - 8*(\wnone)*(\zetaone))
+    );
+  }
+]
+
+\begin{axis}[
+  xlabel={$t$},
+  ylabel={$y(t)$},
+  grid=both,
+  domain=0:1.5,
+  samples=300,
+  thick
+]
+\addplot[blue]{myresp(x)};
+\addlegendentry{Response}
+\end{axis}
+\end{tikzpicture}
+}
+
+\end{randomizechoices}
