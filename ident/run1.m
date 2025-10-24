@@ -1,22 +1,15 @@
 clear;clc;
 
-zetavec=1:5;
-wnvec=5:10;
+syms s x zeta wn real
+assumeAlso([zeta wn] > 0)
 
-syms s t;
-syms zeta wn real;
+Gss = 1/((s^2 + 2*zeta*wn*s + wn^2)*(s + 4));
+yt = ilaplace(Gss, s, x);
 
-Gss=1/((s^2+2*zeta*wn*s+wn^2)*(s+4));
-%% zeta>1 case
-% yt=ilaplace(Gss,s,t);
+%% underdamped case
+syms wd real
+yt_under = subs(yt, sqrt(zeta^2-1),1i*sqrt(1 - zeta^2));
+yt_under = subs(yt_under,wn*sqrt(1 - zeta^2),wd);
+yt_under=simplify(yt_under);
+yt_under
 % latex(yt)
-%% 0<zeta<1 case
-yt=ilaplace(Gss,s,t);
-yt
-
-% ytval=subs(yt,[zeta,wn],[0.1,2]);
-% ytval
-
-% tvec=0:0.01:10;
-% yvec=double(subs(ytval,t,tvec));
-% plot(tvec,yvec)
