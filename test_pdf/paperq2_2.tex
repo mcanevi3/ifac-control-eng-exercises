@@ -1,0 +1,15 @@
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\input{digits}
+
+\pgfmathsetmacro{\zetatwo}{0.1+(0.4-0.1)*(10*\xone+\xzero)/99}
+\pgfmathsetmacro{\wntwo}{0.5+(1-0.5)*(10*\xone+\xzero)/99}
+\pgfmathsetmacro{\tfintwo}{max(1.5*4/(\wntwo*\zetatwo), 2*1)}
+\pgfmathsetmacro{\wdtwo}{\wntwo*sqrt(1-\zetatwo^2)}
+
+
+\begin{document}
+\input{img2_2}
+\end{document}

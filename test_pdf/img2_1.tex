@@ -1,0 +1,29 @@
+\begin{tikzpicture}
+  [
+  declare function={
+    myresp(\x) = (exp(-4*(\x))/(16 + (\wnone)^2 - 8*(\wnone)*(\zetaone))
+     - (exp(-(\x)*(\wnone)*(\zetaone)) *
+        (cosh((\x)*(\wnone)*sqrt(-1+(\zetaone)^2))
+         + (sinh((\x)*(\wnone)*sqrt(-1+(\zetaone)^2))
+            * (-4 + (\wnone)*(\zetaone))
+           )/((\wnone)*sqrt((\zetaone)^2 - 1))
+        )
+       ) / (16 + (\wnone)^2 - 8*(\wnone)*(\zetaone))
+    );
+  }
+]
+
+\begin{axis}[
+  width=0.7\columnwidth,
+  % height=0.4\columnwidth,
+  xlabel={$t$},
+  ylabel={$y(t)$},
+  grid=both,
+  domain=0:\tfinone,
+  samples=100,
+  thick
+]
+\addplot[blue]{myresp(x)};
+% \addlegendentry{Response}
+\end{axis}
+\end{tikzpicture}

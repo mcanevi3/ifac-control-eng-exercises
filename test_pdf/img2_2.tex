@@ -1,0 +1,32 @@
+\begin{tikzpicture}
+  [
+  declare function = {
+    sindeg(\x)=sin(deg(\x));
+    cosdeg(\x)=cos(deg(\x));
+    myresp2(\x) =
+      (
+        exp(-4*\x)
+        - exp(-\wntwo*\zetatwo*\x)
+          * (
+              cosdeg(\wdtwo*\x)+(
+              sindeg(\wdtwo*\x)*(-4+\wntwo*\zetatwo)/(\wdtwo) )
+            )
+      )
+      / ( 16 + \wntwo^2 - 8*\wntwo*\zetatwo );
+  }
+]
+
+\begin{axis}[
+  width=0.7\columnwidth,
+  % height=0.4\columnwidth,
+  xlabel={$t$},
+  ylabel={$y(t)$},
+  grid=both,
+  domain=0:\tfintwo,
+  samples=100,
+  thick
+]
+\addplot[blue]{myresp2(x)};
+% \addlegendentry{Response}
+\end{axis}
+\end{tikzpicture}
