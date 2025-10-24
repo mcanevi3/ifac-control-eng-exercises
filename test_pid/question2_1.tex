@@ -1,0 +1,17 @@
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=10cm,
+    xlabel={$t$ [s]},
+    ylabel={$y(t)$},
+    grid=both,
+  ]
+    \addplot[domain=0:5,samples=200,thick]
+      {exp(-0.3*x)*sin(deg(2*x))};
+  \end{axis}
+\end{tikzpicture}
+\end{document}
