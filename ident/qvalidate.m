@@ -26,7 +26,7 @@ xlabel("time(sec)");ylabel("Zero overshoot");
 subplot(1,2,2);cla;hold on;grid on;ax2=gca;
 xlabel("time(sec)");ylabel("Overshoot");
 
-for i=1:1
+for i=10:10
     %% case 1
     zeta=zetavec1(i);
     wn=wnvec1(i);
