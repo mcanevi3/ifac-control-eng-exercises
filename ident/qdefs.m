@@ -1,6 +1,10 @@
 x0=0:9;
 x1=0:9;
 
+[x0mat,x1mat]=meshgrid(x0,x1);
+x0=x0mat(:);
+x1=x1mat(:);
+
 zeta_stab=[2,5];
 wn_stab=[1,4];
 
