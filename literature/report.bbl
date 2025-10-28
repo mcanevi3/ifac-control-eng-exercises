@@ -1,0 +1,32 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{Amria et~al.(2018)Amria, Ewais, and Hodrob}]{amria2018framework}
+Amria, A., Ewais, A., and Hodrob, R. (2018).
+\newblock A framework for automatic exam generation based on intended learning
+  outcomes.
+\newblock \emph{CSEDU (1)}, 2, 474--80.
+
+\bibitem[{Chow et~al.(2024)Chow, Lee, Park, Kuruppumullage~Don, Hammel,
+  Hallquist, Nord, Oravecz, Perry, Lesser et~al.}]{chow2024personalized}
+Chow, S.M., Lee, J., Park, J., Kuruppumullage~Don, P., Hammel, T., Hallquist,
+  M.N., Nord, E.A., Oravecz, Z., Perry, H.L., Lesser, L.M., et~al. (2024).
+\newblock Personalized education through individualized pathways and resources
+  to adaptive control theory-inspired scientific education (ipractise):
+  proof-of-concept studies for designing and evaluating personalized education.
+\newblock \emph{Journal of Statistics and Data Science Education}, 32(2),
+  174--187.
+
+\bibitem[{Erskine and Mestel(2018)}]{erskine2018developing}
+Erskine, G. and Mestel, B. (2018).
+\newblock Developing stack practice questions for the mathematics masters
+  programme at the open university.
+\newblock \emph{MSOR Connections}, 17(1).
+
+\end{thebibliography}
