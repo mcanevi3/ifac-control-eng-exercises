@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: report.aux
 The style file: ifaconf.bst
 Database file #1: library.bib
-You've used 3 entries,
+You've used 6 entries,
             2921 wiz_defined-function locations,
-            608 strings with 5631 characters,
-and the built_in function-call counts, 2261 in all, are:
-= -- 162
-> -- 139
-< -- 1
-+ -- 53
-- -- 48
-* -- 184
-:= -- 357
-add.period$ -- 9
-call.type$ -- 3
-change.case$ -- 30
-chr.to.int$ -- 3
-cite$ -- 3
-duplicate$ -- 156
-empty$ -- 145
-format.name$ -- 59
-if$ -- 425
+            627 strings with 6370 characters,
+and the built_in function-call counts, 4216 in all, are:
+= -- 326
+> -- 215
+< -- 3
++ -- 80
+- -- 72
+* -- 320
+:= -- 644
+add.period$ -- 19
+call.type$ -- 6
+change.case$ -- 57
+chr.to.int$ -- 6
+cite$ -- 6
+duplicate$ -- 307
+empty$ -- 301
+format.name$ -- 96
+if$ -- 826
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 39
-newline$ -- 24
-num.names$ -- 12
-pop$ -- 75
+missing$ -- 68
+newline$ -- 39
+num.names$ -- 24
+pop$ -- 145
 preamble$ -- 1
-purify$ -- 27
+purify$ -- 47
 quote$ -- 0
-skip$ -- 46
+skip$ -- 107
 stack$ -- 0
-substring$ -- 82
-swap$ -- 89
+substring$ -- 166
+swap$ -- 166
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 27
+type$ -- 54
 warning$ -- 0
-while$ -- 13
+while$ -- 27
 width$ -- 0
-write$ -- 47
+write$ -- 86

@@ -1,4 +1,4 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{6}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -28,5 +28,27 @@ Erskine, G. and Mestel, B. (2018).
 \newblock Developing stack practice questions for the mathematics masters
   programme at the open university.
 \newblock \emph{MSOR Connections}, 17(1).
+
+\bibitem[{Hill and Parvini(2018)}]{hill2018automated}
+Hill, R.C. and Parvini, Y. (2018).
+\newblock Automated grading with a software-checking program in the system
+  dynamics and control curriculum.
+\newblock In \emph{2018 Annual American Control Conference (ACC)}, 345--351.
+  IEEE.
+
+\bibitem[{Romer et~al.(2019)Romer, Lorenzen, Pauli, and
+  Allg{\"o}wer}]{romer2019facilitating}
+Romer, A., Lorenzen, M., Pauli, P., and Allg{\"o}wer, F. (2019).
+\newblock Facilitating learning progress in a first control course via matlab
+  apps.
+\newblock In \emph{Proc. 21st IFAC World Congress. Submitted- preprint online
+  https://www. ist. unistuttgart. de/teaching/elearning/matlab-apps. pdf}.
+
+\bibitem[{Stotsky and Wik(2024)}]{stotsky2024automatic}
+Stotsky, A. and Wik, T. (2024).
+\newblock Automatic generation of examinations in the automatic control
+  courses: Decision support matlab/latex toolkit for stepwise constructive
+  alignment.
+\newblock \emph{IFAC-PapersOnLine}, 58(16), 47--52.
 
 \end{thebibliography}
