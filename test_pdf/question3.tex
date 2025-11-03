@@ -1,0 +1,223 @@
+\pgfplotstableread[col sep=space]{rlocus_data/00_p.txt}\rootlocusdataPD
+\pgfmathsetmacro{\wn}{10} 
+\pgfmathsetmacro{\zeta}{0.5} 
+\pgfmathsetmacro{\omegad}{\wn*sqrt(1-\zeta^2)} 
+\pgfmathsetmacro{\sigmad}{-\wn*\zeta} 
+
+\pgfmathdeclarefunction{anglecomp}{1}{%
+  \pgfmathparse{180-#1}
+}
+
+\pgfmathsetmacro{\pZero}{1} 
+\pgfmathsetmacro{\pOne}{4} 
+\pgfmathsetmacro{\zVal}{19.2} 
+
+\pgfmathsetmacro{\angleZero}{atan2(\omegad, \sigmad+\pZero)} 
+\pgfmathsetmacro{\angleOne}{atan2(\omegad, \sigmad+\pOne)} 
+\pgfmathsetmacro{\anglezVal}{atan2(\omegad, \sigmad+\zVal)}
+
+\pgfmathsetmacro{\angleZeroComp}{180-\angleZero} 
+\pgfmathsetmacro{\angleOneComp}{180-\angleOne} 
+\pgfmathsetmacro{\anglezValComp}{180-\anglezVal} 
+
+\question[30] Time-domain criteria is give as settling time $t_s=1\,s$ and overshoot $os=10\%$. The root-locus plot for the P-type controller design is depicted below. 
+\begin{figure}[!htb]
+  \centering
+  \begin{tikzpicture}[start marker/.pic={\draw (-#1,-#1) -- (#1,#1) (#1,-#1)--(-#1,#1);}]
+  \begin{axis}[
+    no marks,line width=1.4pt,
+    axis equal,
+    grid=both,
+    xlabel={$\Re$},
+    ylabel={$\Im$},
+    xmin=-6,xmax=0,ymin=-1,ymax=10
+    ]
+  \draw[black,line width=0.4pt] (-20,0)--(20,0);
+  \draw[black,line width=0.4pt] (0,-20)--(0,20);
+  \foreach\x in{1,...,2}{
+    \addplot+[
+      restrict y to domain=-20:20,
+      restrict x to domain=-20:20
+    ] table[x=pr\x,y=pi\x] {\rootlocusdataPD} 
+    node[draw,circle,inner sep=2pt] at (current plot end) {}
+    pic at (current plot begin) {start marker=2pt};
+  }
+  \filldraw[black] (0,0) circle (3pt);
+  \draw[black, dashed,line width=0.4pt] (0,0) -- (\sigmad,\omegad);
+  \draw[black, dashed,line width=0.4pt] (0,0) circle[radius=\wn];
+  \filldraw[black] (\sigmad,\omegad) circle (3pt);
+
+  \end{axis}
+  \end{tikzpicture}
+\end{figure}
+
+
+Upgrading the controller to a PD-type controller which of the following angle conditions need to be used?
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{randomizechoices}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\choice 1
+\CorrectChoice \begin{minipage}{0.5\linewidth}
+\centering
+
+\ifprintanswers
+  \pgfmathsetmacro{\angleSum}{1+2+3}
+  $\sum\theta =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
+\fi
+
+\begin{tikzpicture}
+  \begin{axis}[
+    no marks,line width=1.4pt,
+    axis equal,
+    grid=both,
+    xlabel={$\Re$},
+    ylabel={$\Im$},
+    xmin=-20,xmax=0,ymin=-1,ymax=10
+    ]
+  \coordinate (origin) at (0,0);
+  \coordinate (pZero) at (-\pZero,0);
+  \coordinate (pOne) at (-\pOne,0);
+  \coordinate (zPos) at (-\zVal,0);
+  \coordinate (desired) at (\sigmad,\omegad);
+  \coordinate (leftPoint) at (-21,0);
+
+  \draw[gray] (-20,0) -- (20,0);
+  \draw[gray] (0,-20) -- (0,20);
+  \filldraw[black] (origin) circle (3pt);
+  \filldraw[red] (desired) circle (3pt);
+
+  \draw[gray] (pZero) -- (desired);
+  \pic[draw,->,thick,angle eccentricity=-4,angle radius=0.2cm 
+  ]{angle = origin--pZero--desired};
+
+  \draw[gray] (pOne) -- (desired);
+  \pic[draw,->,thick,angle eccentricity=-4,angle radius=0.2cm 
+  ]{angle = origin--pOne--desired};
+
+  \draw[gray] (zPos) -- (desired);
+  \pic[draw,->,thick, angle eccentricity=-4,angle radius=0.2cm 
+  ]{angle = desired--zPos--leftPoint};
+
+  \node[above] at ($(pZero) + (-20.5,-3)$) {$\pgfmathprintnumber[precision=1]{\angleZero}^\circ$};
+  \node[above] at ($(pOne) + (-21,-3)$) {$\pgfmathprintnumber[precision=1]{\angleOne}^\circ$};
+  \node[above] at ($(zPos) + (-19,-3)$) {$\pgfmathprintnumber[precision=1]{\anglezValComp}^\circ$};
+
+  \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \CorrectChoice \begin{minipage}{0.5\linewidth}
+% \centering
+% \ifprintanswers
+% $\sum\theta =\pgfmathprintnumber[precision=1]{\angleDelta}^\circ$ 
+% \else
+%   % Hide the solution
+% \fi
+
+% \begin{tikzpicture}
+%   \begin{axis}[
+%     no marks,line width=1.4pt,
+%     axis equal,
+%     grid=both,
+%     xlabel={$\Re$},
+%     ylabel={$\Im$},
+%     xmin=-20,xmax=0,ymin=-1,ymax=10
+%     ]
+%   \filldraw[black] (0,0) circle (3pt);
+  
+%   \filldraw[black] (\sigmad,\omegad) circle (3pt);
+
+%   \draw (-1,0) node[cross out, draw, thick, scale=0.7] {};
+%   \draw (-4,0) node[cross out, draw, thick, scale=0.7] {};
+%   \draw (-19.2,0) node[circle, draw, thick, scale=0.7] {};
+
+%   \draw[line width=1.2pt,black,dashed] (-1,0) -- (\sigmad,\omegad);
+%   \draw[line width=1.2pt,black,dashed] (-4,0) -- (\sigmad,\omegad);
+%   \draw[line width=1.2pt,black,dashed] (-19.2,0) -- (\sigmad,\omegad);
+  
+%   % Annotate angles
+%   \node[above] at (-1.5,-2) {$\pgfmathprintnumber[precision=1]{\angleA}^\circ$};
+%   \node[above] at (-5,-2) {$\pgfmathprintnumber[precision=1]{\angleB}^\circ$};
+%   \node[above] at (-18.2,-2) {$\pgfmathprintnumber[precision=1]{\angleC}^\circ$};
+
+%   \end{axis}
+%   \end{tikzpicture}
+% \end{minipage}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \choice \begin{minipage}{0.5\linewidth}
+% \centering
+% \ifprintanswers
+% $\sum\theta =\pgfmathprintnumber[precision=1]{\angleDelta}^\circ$ 
+% \else
+%   % Hide the solution
+% \fi
+% \begin{tikzpicture}
+%   \begin{axis}[
+%     no marks,line width=1.4pt,
+%     axis equal,
+%     grid=both,
+%     xlabel={$\Re$},
+%     ylabel={$\Im$},
+%     xmin=-20,xmax=0,ymin=-1,ymax=10
+%     ]
+%   \filldraw[black] (0,0) circle (3pt);
+  
+%   \filldraw[black] (\sigmad,\omegad) circle (3pt);
+
+%   \draw (-1,0) node[cross out, draw, thick, scale=0.7] {};
+%   \draw (-4,0) node[cross out, draw, thick, scale=0.7] {};
+%   \draw (-19.2,0) node[circle, draw, thick, scale=0.7] {};
+
+%   \draw[line width=1.2pt,black,dashed] (-1,0) -- (\sigmad,\omegad);
+%   \draw[line width=1.2pt,black,dashed] (-4,0) -- (\sigmad,\omegad);
+%   \draw[line width=1.2pt,black,dashed] (-19.2,0) -- (\sigmad,\omegad);
+  
+%   % Annotate angles
+%   \node[above] at (-1.5,-2) {$\pgfmathprintnumber[precision=1]{\angleAComp}^\circ$};
+%   \node[above] at (-5,-2) {$\pgfmathprintnumber[precision=1]{\angleB}^\circ$};
+%   \node[above] at (-18.2,-2) {$\pgfmathprintnumber[precision=1]{\angleC}^\circ$};
+
+%   \end{axis}
+%   \end{tikzpicture}
+% \end{minipage}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \choice \begin{minipage}{0.5\linewidth}
+% \centering
+% \ifprintanswers
+%  $\sum\theta =\pgfmathprintnumber[precision=1]{\angleDelta}^\circ$ 
+% \else
+%   % Hide the solution
+% \fi
+
+% \begin{tikzpicture}
+%   \begin{axis}[
+%     no marks,line width=1.4pt,
+%     axis equal,
+%     grid=both,
+%     xlabel={$\Re$},
+%     ylabel={$\Im$},
+%     xmin=-20,xmax=0,ymin=-1,ymax=10
+%     ]
+%   \filldraw[black] (0,0) circle (3pt);
+  
+%   \filldraw[black] (\sigmad,\omegad) circle (3pt);
+
+%   \draw (-1,0) node[cross out, draw, thick, scale=0.7] {};
+%   \draw (-4,0) node[cross out, draw, thick, scale=0.7] {};
+%   \draw (-19.2,0) node[cross out,draw, thick, scale=0.7] {};
+
+%   \draw[line width=1.2pt,black,dashed] (-1,0) -- (\sigmad,\omegad);
+%   \draw[line width=1.2pt,black,dashed] (-4,0) -- (\sigmad,\omegad);
+%   \draw[line width=1.2pt,black,dashed] (-19.2,0) -- (\sigmad,\omegad);
+  
+%   % Annotate angles
+%   \node[above] at (-1.5,-2) {$\pgfmathprintnumber[precision=1]{\angleAComp}^\circ$};
+%   \node[above] at (-5,-2) {$\pgfmathprintnumber[precision=1]{\angleB}^\circ$};
+%   \node[above] at (-18.2,-2) {$\pgfmathprintnumber[precision=1]{\angleC}^\circ$};
+
+%   \end{axis}
+%   \end{tikzpicture}
+% \end{minipage}
+\end{randomizechoices}

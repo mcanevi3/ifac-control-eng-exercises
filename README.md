@@ -24,4 +24,5 @@ Choosing $xy$ as last two digits of student-id
 p=pmin+(pmax-pmin)*((10*x+y)/99)
 
 
-
+# Thanks to
+https://github.com/jesseopdenbrouw/exam-randomizechoices
