@@ -6,5 +6,5 @@
 % Edits to this file are lost
 % This file may safely be removed
 %
-\gdef\fi{1/B,2/A,3/B}
+\gdef\fi{1/B,2/A,3/A}
 \endinput

@@ -8,7 +8,8 @@
 \pgfmathsetmacro{\wn}{\sigmad/\zeta}
 \pgfmathsetmacro{\omegad}{\wn*sqrt(1-\zeta^2)} 
 
-\pgfmathsetmacro{\zVal}{19.2} 
+\pgfmathsetmacro{\kVal}{2*\zeta*\wn-\pOne-\pZero} 
+\pgfmathsetmacro{\zVal}{(\wn*\wn-\pOne*\pZero)/\kVal} 
 
 \pgfmathsetmacro{\angleZero}{atan2(\omegad, \sigmad+\pZero)} 
 \pgfmathsetmacro{\angleOne}{atan2(\omegad, \sigmad+\pOne)} 
@@ -56,8 +57,8 @@ Upgrading the controller to a PD-type controller which of the following angle co
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{randomizechoices}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\choice 1
-\CorrectChoice \begin{minipage}{0.5\linewidth}
+\CorrectChoice 1
+\choice \begin{minipage}{0.5\linewidth}
 \centering
 \ifprintanswers
   \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne+\anglezValComp}
