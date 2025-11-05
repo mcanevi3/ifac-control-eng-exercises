@@ -61,12 +61,10 @@ Upgrading the controller to a PD-type controller which of the following angle co
 \choice 1
 \CorrectChoice \begin{minipage}{0.5\linewidth}
 \centering
-
 \ifprintanswers
-  \pgfmathsetmacro{\angleSum}{1+2+3}
+  \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne+\anglezValComp}
   $\sum\theta =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
 \fi
-
 \begin{tikzpicture}
   \begin{axis}[
     no marks,line width=1.4pt,

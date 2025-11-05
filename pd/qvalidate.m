@@ -12,17 +12,21 @@ p1val=funp1(x0val,x1val);
 zetaval=funzeta(x0val,x1val);
 wnval=funwn(x0val,x1val);
 
-wdval=sqrt(1-zetaval^2)*wnval;
-sdes=-zetaval*wnval+1i*wdval;
+angleFalse1=fun_angleFalse1(x0val,x1val);
+angleFalse2=fun_angleFalse2(x0val,x1val);
+angleFalse3=fun_angleFalse3(x0val,x1val);
+angleFalse4=fun_angleFalse4(x0val,x1val);
+angleCorrect=fun_angleCorrect(x0val,x1val);
 
-d0=sdes-(-p0val);
-d1=sdes-(-p1val);
-dz=sdes-(-zval);
-theta0=atan2d(imag(d0),real(d0));
-theta1=atan2d(imag(d1),real(d1));
-thetaz=atan2d(imag(dz),real(dz));
-theta_sum_correct=theta0+theta1-thetaz;
-theta_sum_correct
+answers=[angleFalse1,angleFalse2,angleFalse3,angleFalse4,angleCorrect];
+falseCount=sum(double(abs(answers(1:end-1)-180.00)<1e-4));
+correctCount=sum(double(abs(answers(end)-180.00)<1e-4));
+allUnique=length(unique(answers))==length(answers);
 
-theta_sum_false1=theta0+theta1+thetaz
-theta_sum_false2=theta0+theta1+(180-thetaz)
+isValid=(falseCount==0 & correctCount==1)&allUnique;
+
+if isValid
+    disp("All answers are unique ad valid");
+else
+    disp("Invalid!!!");
+end
