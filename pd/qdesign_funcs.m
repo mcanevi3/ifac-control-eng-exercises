@@ -42,7 +42,7 @@ anglezVal=atan2d(wdes, -sigmades+sol.z);
 fun_angleZero=matlabFunction(angleZero);
 fun_angleOne=matlabFunction(angleOne);
 fun_anglezVal=matlabFunction(anglezVal);
-%% TODO: define all choices in terms of x1,x0 correct or false
+
 fun_angleCorrect=matlabFunction(angleZero+angleOne-anglezVal);
 fun_angleFalse1=matlabFunction(angleZero+angleOne+180-anglezVal);
 fun_angleFalse2=matlabFunction(180-angleZero+angleOne+anglezVal);

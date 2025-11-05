@@ -1,15 +1,13 @@
 \pgfplotstableread[col sep=space]{rlocus_data/00_p.txt}\rootlocusdataPD
-\pgfmathsetmacro{\wn}{10} 
-\pgfmathsetmacro{\zeta}{0.5} 
+
+\pgfmathsetmacro{\pZero}{1+(2-1)*(10*\xone+\xzero)/99}
+\pgfmathsetmacro{\pOne}{4+(5-4)*(10*\xone+\xzero)/99}
+\pgfmathsetmacro{\zeta}{0.5+(0.6-0.5)*(10*\xone+\xzero)/99}
+
+\pgfmathsetmacro{\sigmad}{\pZero+\pOne}
+\pgfmathsetmacro{\wn}{\sigmad/\zeta}
 \pgfmathsetmacro{\omegad}{\wn*sqrt(1-\zeta^2)} 
-\pgfmathsetmacro{\sigmad}{-\wn*\zeta} 
 
-\pgfmathdeclarefunction{anglecomp}{1}{%
-  \pgfmathparse{180-#1}
-}
-
-\pgfmathsetmacro{\pZero}{1} 
-\pgfmathsetmacro{\pOne}{4} 
 \pgfmathsetmacro{\zVal}{19.2} 
 
 \pgfmathsetmacro{\angleZero}{atan2(\omegad, \sigmad+\pZero)} 
@@ -43,9 +41,9 @@
     pic at (current plot begin) {start marker=2pt};
   }
   \filldraw[black] (0,0) circle (3pt);
-  \draw[black, dashed,line width=0.4pt] (0,0) -- (\sigmad,\omegad);
+  \draw[black, dashed,line width=0.4pt] (0,0) -- (-\sigmad,\omegad);
   \draw[black, dashed,line width=0.4pt] (0,0) circle[radius=\wn];
-  \filldraw[black] (\sigmad,\omegad) circle (3pt);
+  \filldraw[black] (-\sigmad,\omegad) circle (3pt);
 
   \end{axis}
   \end{tikzpicture}
@@ -78,7 +76,7 @@ Upgrading the controller to a PD-type controller which of the following angle co
   \coordinate (pZero) at (-\pZero,0);
   \coordinate (pOne) at (-\pOne,0);
   \coordinate (zPos) at (-\zVal,0);
-  \coordinate (desired) at (\sigmad,\omegad);
+  \coordinate (desired) at (-\sigmad,\omegad);
   \coordinate (leftPoint) at (-21,0);
 
   \draw[gray] (-20,0) -- (20,0);
