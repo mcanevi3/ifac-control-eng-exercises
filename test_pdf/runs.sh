@@ -4,9 +4,9 @@ file="digits.tex"
 text1="";
 text2="";
 
-for x in {0..1}; 
+for x in {0..9}; 
 do
-	for y in {0..1}; 
+	for y in {0..9}; 
 	do
 			text1=$text1"\def\xzero{"$x"}";
 			text2=$text2"\def\xone{"$y"}";

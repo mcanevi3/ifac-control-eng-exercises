@@ -1,4 +1,5 @@
-\pgfplotstableread[col sep=space]{rlocus_data/00_p.txt}\rootlocusdataPD
+\edef\RLfilename{rlocus_data/\xone\xzero_p.txt}
+\pgfplotstableread[col sep=space]{\RLfilename}\rootlocusdataPD
 
 \pgfmathsetmacro{\pZero}{1+(2-1)*(10*\xone+\xzero)/99}
 \pgfmathsetmacro{\pOne}{4+(5-4)*(10*\xone+\xzero)/99}
@@ -19,7 +20,7 @@
 \pgfmathsetmacro{\angleOneComp}{180-\angleOne} 
 \pgfmathsetmacro{\anglezValComp}{180-\anglezVal} 
 
-\question[30] A design point on the root-locus plot for a P-type controller is shown below. A zero is added so that the root-locus passes through this design point. Which of the following represents the correct angle condition for this design?
+\question[30] A design point on the root-locus plot for a P-type controller is shown below. 
 \begin{figure}[!htb]
   \centering
   \begin{tikzpicture}[start marker/.pic={\draw (-#1,-#1) -- (#1,#1) (#1,-#1)--(-#1,#1);}]
@@ -29,15 +30,19 @@
     grid=both,
     xlabel={$\Re$},
     ylabel={$\Im$},
-    xmin=-6,xmax=0,ymin=-1,ymax=10,
+    xmin=-12,xmax=1,ymin=-1,ymax=10,
     xticklabel style={
       /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
-  yticklabel style={
-      /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
+      /pgf/number format/precision=1,
+      rotate=90,
+      anchor=near xticklabel
+    },
+    yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=1
+    },
+    xtick={-\sigmad,-\pOne,-\pZero,0}, 
+    ytick={0, \omegad},
     ]
   \draw[black,line width=0.4pt] (-20,0)--(20,0);
   \draw[black,line width=0.4pt] (0,-20)--(0,20);
@@ -50,107 +55,109 @@
     pic at (current plot begin) {start marker=2pt};
   }
   \filldraw[black] (0,0) circle (3pt);
-  \draw[black, dashed,line width=0.4pt] (0,0) -- (-\sigmad,\omegad);
+  \draw[black, dashed,line width=0.4pt] (0,0) -- (-2*\sigmad,2*\omegad);
   \draw[black, dashed,line width=0.4pt] (0,0) circle[radius=\wn];
   \filldraw[black] (-\sigmad,\omegad) circle (3pt);
 
-  \node at (1.5,2) {$\zeta=\zetaval$};
-  \node at (1.7,3) {$w_n=\wn$};
+  \node at (-7.5,9) {$\zeta=
+  \pgfmathprintnumber[precision=3]{\zetaval}
+  $};
+  \node at (-9,4) {$w_n=
+  \pgfmathprintnumber[precision=2]{\wn}
+  $};
   \end{axis}
   \end{tikzpicture}
 \end{figure}
+
+A zero is added so that the root-locus passes through this design point. Which of the following represents the correct angle condition for this design?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{randomizechoices}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \CorrectChoice \begin{minipage}{0.5\linewidth}
-\centering
-\ifprintanswers
-  \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne-\anglezVal}
-  $\sum\theta=
-  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
-  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
-  -\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
-  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$
-\else
-  $\sum{\theta}=
-  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
-  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
-  -\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
-  $
-\fi
-\begin{tikzpicture}
-  \begin{axis}[
-    no marks,line width=1.4pt,
-    axis equal,
-    grid=both,
-    xlabel={$\Re$},
-    ylabel={$\Im$},
-    xmin=-20,xmax=0,ymin=-1,ymax=10,
-    xticklabel style={
-      /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
-  yticklabel style={
-      /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
-    ]
-  \coordinate (origin) at (0,0);
-  \coordinate (pZero) at (-\pZero,0);
-  \coordinate (pOne) at (-\pOne,0);
-  \coordinate (zPos) at (-\zVal,0);
-  \coordinate (desired) at (-\sigmad,\omegad);
-  \coordinate (leftPoint) at (-21,0);
-  \coordinate (rightPoint) at (15,0);
+      \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne-\anglezVal}
+      \begin{equation*}
+      \sum\theta=
+      \pgfmathprintnumber[precision=1]{\angleZero}^\circ
+      +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
+      -\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
+      = \ifprintanswers
+      \pgfmathprintnumber[precision=1]{\angleSum}^\circ
+       \fi 
+      \end{equation*}
+      \centering
+      \begin{tikzpicture}
+      \begin{axis}[
+        no marks,line width=1.4pt,
+        axis equal,
+        grid=both,
+        xlabel={$\Re$},
+        ylabel={$\Im$},
+        xmin=-20,xmax=0,ymin=-1,ymax=10,
+        xticklabel style={
+          /pgf/number format/fixed,
+          /pgf/number format/precision=1,
+          rotate=90,
+          anchor=near xticklabel
+      },
+      yticklabel style={
+          /pgf/number format/fixed,
+          /pgf/number format/precision=1
+      },
+      xtick={-\zVal,-\sigmad,-\pOne,-\pZero,0}, 
+      ytick={0, \omegad},
+        ]
+      \coordinate (origin) at (0,0);
+      \coordinate (pZero) at (-\pZero,0);
+      \coordinate (pOne) at (-\pOne,0);
+      \coordinate (zPos) at (-\zVal,0);
+      \coordinate (desired) at (-\sigmad,\omegad);
+      \coordinate (leftPoint) at (-21,0);
+      \coordinate (rightPoint) at (15,0);
 
-  \draw[gray] (-20,0) -- (20,0);
-  \draw[gray] (0,-20) -- (0,20);
-  \filldraw[black] (origin) circle (3pt);
-  \filldraw[red] (desired) circle (3pt);
+      \draw[gray] (-20,0) -- (20,0);
+      \draw[gray] (0,-20) -- (0,20);
+      \filldraw[black] (origin) circle (3pt);
+      \filldraw[red] (desired) circle (3pt);
 
-  \draw[gray] (pZero) -- (desired);
-  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
-  ]{angle = origin--pZero--desired};
+      \draw[gray] (pZero) -- (desired);
+      \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
+      ]{angle = origin--pZero--desired};
 
-  \draw[gray] (pOne) -- (desired);
-  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
-  ]{angle = origin--pOne--desired};
+      \draw[gray] (pOne) -- (desired);
+      \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
+      ]{angle = origin--pOne--desired};
 
-  \draw[gray] (zPos) -- (desired);
-  \pic[draw,thick, angle eccentricity=-4,angle radius=0.3cm 
-  ]{angle = rightPoint--zPos--desired};
+      \draw[gray] (zPos) -- (desired);
+      \pic[draw,thick, angle eccentricity=-4,angle radius=0.3cm 
+      ]{angle = rightPoint--zPos--desired};
 
 
-  \node[above] at ($(pZero) + (-20.5,-3)$) {$\pgfmathprintnumber[precision=1]{\angleZero}^\circ$};
-  \node[above] at ($(pOne) + (-21,-3)$) {$\pgfmathprintnumber[precision=1]{\angleOne}^\circ$};
-  \node[above] at ($(zPos) + (-19,-3)$) {$\pgfmathprintnumber[precision=1]{\anglezVal}^\circ$};
+      \node[above] at ($(pZero) + (-20.5,-3)$) {$\pgfmathprintnumber[precision=1]{\angleZero}^\circ$};
+      \node[above] at ($(pOne) + (-21,-3)$) {$\pgfmathprintnumber[precision=1]{\angleOne}^\circ$};
+      \node[above] at ($(zPos) + (-19,-3)$) {$\pgfmathprintnumber[precision=1]{\anglezVal}^\circ$};
 
-  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pZero) {};
-  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pOne) {};
-  \node[circle, draw=red, inner sep=0pt, minimum size=6pt] at (zPos) {};
+      \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pZero) {};
+      \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pOne) {};
+      \node[circle, draw=red, inner sep=0pt, minimum size=6pt] at (zPos) {};
 
-  \end{axis}
-  \end{tikzpicture}
+      \end{axis}
+      \end{tikzpicture}
 \end{minipage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \choice \begin{minipage}{0.5\linewidth}
-\centering
-\ifprintanswers
   \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne+\anglezValComp} %false1
-  $\sum\theta =
+  \begin{equation*}
+  \sum\theta =
   \pgfmathprintnumber[precision=1]{\angleZero}^\circ
   +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
   +\pgfmathprintnumber[precision=1]{\anglezValComp}^\circ
-  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
-\else
-  $\sum{\theta}=
-  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
-  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
-  +\pgfmathprintnumber[precision=1]{\anglezValComp}^\circ
-  $
-\fi
-\begin{tikzpicture}
+  =\ifprintanswers
+  \pgfmathprintnumber[precision=1]{\angleSum}^\circ
+  \fi
+  \end{equation*}
+  \centering
+  \begin{tikzpicture}
   \begin{axis}[
     no marks,line width=1.4pt,
     axis equal,
@@ -160,12 +167,16 @@
     xmin=-20,xmax=0,ymin=-1,ymax=10,
     xticklabel style={
       /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
-  yticklabel style={
-      /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
+      /pgf/number format/precision=1,
+      rotate=90,
+      anchor=near xticklabel
+    },
+    yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=1
+   },
+    xtick={-\zVal,-\sigmad,-\pOne,-\pZero,0}, 
+    ytick={0, \omegad},
     ]
   \coordinate (origin) at (0,0);
   \coordinate (pZero) at (-\pZero,0);
@@ -204,38 +215,37 @@
 \end{minipage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \choice \begin{minipage}{0.5\linewidth}
-\centering
-\ifprintanswers
   \pgfmathsetmacro{\angleSum}{\angleZeroComp+\angleOne+\anglezVal} %false2
-  $\sum\theta =
+  \begin{equation*}
+  \sum\theta =
   \pgfmathprintnumber[precision=1]{\angleZeroComp}^\circ
   +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
   +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
-  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
-\else
-  $\sum{\theta}=
-  \pgfmathprintnumber[precision=1]{\angleZeroComp}^\circ
-  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
-  +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
-  $
-\fi
-
-\begin{tikzpicture}
-  \begin{axis}[
-    no marks,line width=1.4pt,
-    axis equal,
-    grid=both,
-    xlabel={$\Re$},
-    ylabel={$\Im$},
-    xmin=-20,xmax=0,ymin=-1,ymax=10,
-    xticklabel style={
-      /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
-  yticklabel style={
-      /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
+  =\ifprintanswers
+  \pgfmathprintnumber[precision=1]{\angleSum}^\circ
+  \fi
+  \end{equation*}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      no marks,line width=1.4pt,
+      axis equal,
+      grid=both,
+      xlabel={$\Re$},
+      ylabel={$\Im$},
+      xmin=-20,xmax=0,ymin=-1,ymax=10,
+      xticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=1,
+        rotate=90,
+        anchor=near xticklabel
+    },
+    yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=1
+    },
+      xtick={-\zVal,-\sigmad,-\pOne,-\pZero,0}, 
+      ytick={0, \omegad},
     ]
   \coordinate (origin) at (0,0);
   \coordinate (pZero) at (-\pZero,0);
@@ -275,22 +285,18 @@
 \end{minipage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \choice \begin{minipage}{0.5\linewidth}
-\centering
-\ifprintanswers
   \pgfmathsetmacro{\angleSum}{\angleZero+\angleOneComp+\anglezVal} %false3
-  $\sum\theta=
+  \begin{equation*}
+  \sum\theta=
   \pgfmathprintnumber[precision=1]{\angleZero}^\circ
   +\pgfmathprintnumber[precision=1]{\angleOneComp}^\circ
   +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
-  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
-\else
-  $\sum{\theta}=
-  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
-  +\pgfmathprintnumber[precision=1]{\angleOneComp}^\circ
-  +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
-  $
-\fi
-\begin{tikzpicture}
+    =\ifprintanswers
+    \pgfmathprintnumber[precision=1]{\angleSum}^\circ
+  \fi
+  \end{equation*}
+  \centering
+  \begin{tikzpicture}
   \begin{axis}[
     no marks,line width=1.4pt,
     axis equal,
@@ -300,12 +306,16 @@
     xmin=-20,xmax=0,ymin=-1,ymax=10,
     xticklabel style={
       /pgf/number format/fixed,
-      /pgf/number format/precision=1
+      /pgf/number format/precision=1,
+      rotate=90,
+      anchor=near xticklabel
   },
   yticklabel style={
       /pgf/number format/fixed,
       /pgf/number format/precision=1
   },
+      xtick={-\zVal,-\sigmad,-\pOne,-\pZero,0}, 
+      ytick={0, \omegad},
     ]
   \coordinate (origin) at (0,0);
   \coordinate (pZero) at (-\pZero,0);
@@ -345,22 +355,18 @@
 \end{minipage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \choice \begin{minipage}{0.5\linewidth}
-\centering
-\ifprintanswers
   \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne+\anglezVal}
-  $\sum\theta =
+  \begin{equation*}
+  \sum\theta =
   \pgfmathprintnumber[precision=1]{\angleZero}^\circ
   +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
   +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
-  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
-\else
-  $\sum{\theta}=
-  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
-  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
-  +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
-  $
-\fi
-\begin{tikzpicture}
+  =\ifprintanswers
+  \pgfmathprintnumber[precision=1]{\angleSum}^\circ 
+  \fi
+  \end{equation*}
+  \centering
+  \begin{tikzpicture}
   \begin{axis}[
     no marks,line width=1.4pt,
     axis equal,
@@ -370,12 +376,16 @@
     xmin=-20,xmax=0,ymin=-1,ymax=10,
     xticklabel style={
       /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
-  yticklabel style={
-      /pgf/number format/fixed,
-      /pgf/number format/precision=1
-  },
+      /pgf/number format/precision=1,
+      rotate=90,
+      anchor=near xticklabel
+    },
+    yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=1
+    },
+      xtick={-\zVal,-\sigmad,-\pOne,-\pZero,0}, 
+      ytick={0, \omegad},
     ]
   \coordinate (origin) at (0,0);
   \coordinate (pZero) at (-\pZero,0);
