@@ -32,4 +32,17 @@ end
 xlim(ax1,[0,40]);
 ylim(ax1,[0,1.1]);
 
-print("center_stable.png","-dpng","-r150")
+%% Export
+targetWidth = 7.2;
+fig = gcf;
+origUnits = get(fig, 'Units');
+set(fig, 'Units', 'inches');
+pos = get(fig, 'Position');
+aspectRatio = pos(4)/pos(3); % height / width
+set(fig, 'Position', [pos(1), pos(2), targetWidth, targetWidth*aspectRatio]);
+set(fig, 'Units', origUnits);
+set(fig, 'PaperUnits', 'inches', ...
+         'PaperPosition', [0 0 targetWidth targetWidth*aspectRatio], ...
+         'PaperSize', [targetWidth targetWidth*aspectRatio]);
+
+print(fig,"center_stable.png","-dpng","-r150")

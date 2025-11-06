@@ -99,4 +99,18 @@ fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
 
 legend("p_1(s)","p_2(s)","p_3(s)","p_4(s)","stability","solution region","unstable")
 
-print("stability.png","-dpng","-r150")
+
+%% Export
+targetWidth = 7.2;
+fig = gcf;
+origUnits = get(fig, 'Units');
+set(fig, 'Units', 'inches');
+pos = get(fig, 'Position');
+aspectRatio = pos(4)/pos(3); % height / width
+set(fig, 'Position', [pos(1), pos(2), targetWidth, targetWidth*aspectRatio]);
+set(fig, 'Units', origUnits);
+set(fig, 'PaperUnits', 'inches', ...
+         'PaperPosition', [0 0 targetWidth targetWidth*aspectRatio], ...
+         'PaperSize', [targetWidth targetWidth*aspectRatio]);
+
+print(fig,"stability.png","-dpng","-r300")

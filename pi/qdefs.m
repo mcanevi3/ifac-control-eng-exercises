@@ -1,5 +1,6 @@
-x0=0:9;
-x1=0:9;
+[x0mat,x1mat]=meshgrid(0:2:9,0:2:9);
+x0=x0mat(:)';
+x1=x1mat(:)';
 
 p1max=3.5; %5
 p1min=3; %3

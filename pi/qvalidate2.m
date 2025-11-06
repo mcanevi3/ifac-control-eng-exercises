@@ -6,8 +6,8 @@ p0vec=p0min+(p0max-p0min)*(10*x1+x0)/99;
 p1vec=p1min+(p1max-p1min)*(10*x1+x0)/99;
 
 % center stable
-kpvec=linspace(kstable(1),kstable(2),10);
-kivec=linspace(kstable(3),kstable(4),10);
+kpvec=linspace(kstable(1),kstable(2),2);
+kivec=linspace(kstable(3),kstable(4),2);
 
 figure(1);clf;hold on;grid on;
 xlabel("time(s)");
@@ -36,4 +36,17 @@ end
 xlim(ax1,[0,100]);
 ylim(ax1,[-3.5,4.5]);
 
-print("step_response1.png","-dpng","-r150")
+%% Export
+targetWidth = 7.2;
+fig = gcf;
+origUnits = get(fig, 'Units');
+set(fig, 'Units', 'inches');
+pos = get(fig, 'Position');
+aspectRatio = pos(4)/pos(3); % height / width
+set(fig, 'Position', [pos(1), pos(2), targetWidth, targetWidth*aspectRatio]);
+set(fig, 'Units', origUnits);
+set(fig, 'PaperUnits', 'inches', ...
+         'PaperPosition', [0 0 targetWidth targetWidth*aspectRatio], ...
+         'PaperSize', [targetWidth targetWidth*aspectRatio]);
+
+print(fig,"step_response1.png","-dpng","-r150")
