@@ -1,6 +1,3 @@
-% \pgfmathdeclarefunction{sinr}{1}{\pgfmathparse{sin(rad(#1))}}
-% \pgfmathdeclarefunction{cosr}{1}{\pgfmathparse{cos(rad(#1))}}
-
 \pgfmathsetmacro{\zetaone}{2+(5-2)*(10*\xone+\xzero)/99}
 \pgfmathsetmacro{\wnone}{4+(1-4)*(10*\xone+\xzero)/99}
 \pgfmathsetmacro{\tfinone}{max(2*4/(\wnone*(\zetaone-sqrt(\zetaone^2-1))), 2*1)}
@@ -11,16 +8,15 @@
 \pgfmathsetmacro{\wdtwo}{\wntwo*sqrt(1-\zetatwo^2)}
 
 
-\question[35] Which of the following does not overshoot?
+\question[35] Which one of the following unit impulse responses corresponds to a system that does not overshoot when subjected to a unit step input?
 
-
-\begin{randomizeoneparchoices}
-\CorrectChoice \begin{minipage}[c]{0.45\linewidth}
+\begin{randomizechoices}
+\CorrectChoice \begin{minipage}[c]{\linewidth}
     \centering
     \input{img2_1}
   \end{minipage}
-  \choice \begin{minipage}[c]{0.45\linewidth}
+  \choice \begin{minipage}[c]{\linewidth}
     \centering
     \input{img2_2}
   \end{minipage}
-\end{randomizeoneparchoices}
+\end{randomizechoices}

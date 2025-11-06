@@ -19,7 +19,7 @@
 \pgfmathsetmacro{\angleOneComp}{180-\angleOne} 
 \pgfmathsetmacro{\anglezValComp}{180-\anglezVal} 
 
-\question[30] Time-domain criteria is give as settling time $t_s=1\,s$ and overshoot $os=10\%$. The root-locus plot for the P-type controller design is depicted below. 
+\question[30] A design point on the root-locus plot for a P-type controller is shown below. A zero is added so that the root-locus passes through this design point. Which of the following represents the correct angle condition for this design?
 \begin{figure}[!htb]
   \centering
   \begin{tikzpicture}[start marker/.pic={\draw (-#1,-#1) -- (#1,#1) (#1,-#1)--(-#1,#1);}]
@@ -47,14 +47,10 @@
   \filldraw[black] (-\sigmad,\omegad) circle (3pt);
 
   \node at (1.5,2) {$\zeta=\zetaval$};
-  \node at (1.5,3) {$w_n=\wn$};
+  \node at (1.7,3) {$w_n=\wn$};
   \end{axis}
   \end{tikzpicture}
 \end{figure}
-
-
-Upgrading the controller to a PD-type controller which of the following angle conditions need to be used?
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{randomizechoices}
