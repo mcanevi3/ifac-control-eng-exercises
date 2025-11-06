@@ -1,11 +1,11 @@
 \def\pzero{\pgfmathparse{7+(7.5-7)*(10*\xone+\xzero)/99}\pgfmathresult}
 \def\pone{\pgfmathparse{3+(3.5-3)*(10*\xone+\xzero)/99}\pgfmathresult}
 
-\question[35] An open-loop transfer function is given as,
+\question[35] An open-loop transfer function is given by,
 \begin{gather*}
 G(s)=\frac{1}{s^3+2.0s^2+\pone s+\pzero}
 \end{gather*}
-which of the following PI-controllers stabilizes the system in a closed-loop unit feedback structure?
+Which of the following PI controllers stabilizes the system in a unit-feedback closed-loop configuration?
 
 \begin{randomizechoices}
 \choice $F(s)=\pgfmathparse{0.5+3*(10*\xone+\xzero)/99}\pgfmathresult+\frac{\pgfmathparse{1+(10*\xone+\xzero)/99}\pgfmathresult}{s}$

@@ -21,7 +21,15 @@
   grid=both,
   domain=0:\tfinone,
   samples=100,
-  thick
+  thick,
+  xticklabel style={
+      /pgf/number format/fixed,
+      /pgf/number format/precision=1
+  },
+  yticklabel style={
+      /pgf/number format/fixed,
+      /pgf/number format/precision=1
+  },
 ]
 \addplot[blue]{myresp(x)};
 \end{axis}
