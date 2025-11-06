@@ -2,13 +2,13 @@
 
 \pgfmathsetmacro{\pZero}{1+(2-1)*(10*\xone+\xzero)/99}
 \pgfmathsetmacro{\pOne}{4+(5-4)*(10*\xone+\xzero)/99}
-\pgfmathsetmacro{\zeta}{0.5+(0.6-0.5)*(10*\xone+\xzero)/99}
+\pgfmathsetmacro{\zetaval}{0.5+(0.6-0.5)*(10*\xone+\xzero)/99}
 
 \pgfmathsetmacro{\sigmad}{\pZero+\pOne}
-\pgfmathsetmacro{\wn}{\sigmad/\zeta}
-\pgfmathsetmacro{\omegad}{\wn*sqrt(1-\zeta^2)} 
+\pgfmathsetmacro{\wn}{\sigmad/\zetaval}
+\pgfmathsetmacro{\omegad}{\wn*sqrt(1-\zetaval^2)} 
 
-\pgfmathsetmacro{\kVal}{2*\zeta*\wn-\pOne-\pZero} 
+\pgfmathsetmacro{\kVal}{2*\zetaval*\wn-\pOne-\pZero} 
 \pgfmathsetmacro{\zVal}{(\wn*\wn-\pOne*\pZero)/\kVal} 
 
 \pgfmathsetmacro{\angleZero}{atan2(\omegad, -\sigmad+\pZero)} 
@@ -46,6 +46,8 @@
   \draw[black, dashed,line width=0.4pt] (0,0) circle[radius=\wn];
   \filldraw[black] (-\sigmad,\omegad) circle (3pt);
 
+  \node at (1.5,2) {$\zeta=\zetaval$};
+  \node at (1.5,3) {$w_n=\wn$};
   \end{axis}
   \end{tikzpicture}
 \end{figure}
@@ -61,7 +63,17 @@ Upgrading the controller to a PD-type controller which of the following angle co
 \centering
 \ifprintanswers
   \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne-\anglezVal}
-  $\sum\theta =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
+  $\sum\theta=
+  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
+  -\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
+  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$
+\else
+  $\sum{\theta}=
+  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
+  -\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
+  $
 \fi
 \begin{tikzpicture}
   \begin{axis}[
@@ -86,20 +98,25 @@ Upgrading the controller to a PD-type controller which of the following angle co
   \filldraw[red] (desired) circle (3pt);
 
   \draw[gray] (pZero) -- (desired);
-  \pic[draw,->,thick,angle eccentricity=-4,angle radius=0.2cm 
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
   ]{angle = origin--pZero--desired};
 
   \draw[gray] (pOne) -- (desired);
-  \pic[draw,->,thick,angle eccentricity=-4,angle radius=0.2cm 
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
   ]{angle = origin--pOne--desired};
 
   \draw[gray] (zPos) -- (desired);
-  \pic[draw,->,thick, angle eccentricity=-4,angle radius=0.2cm 
+  \pic[draw,thick, angle eccentricity=-4,angle radius=0.3cm 
   ]{angle = rightPoint--zPos--desired};
+
 
   \node[above] at ($(pZero) + (-20.5,-3)$) {$\pgfmathprintnumber[precision=1]{\angleZero}^\circ$};
   \node[above] at ($(pOne) + (-21,-3)$) {$\pgfmathprintnumber[precision=1]{\angleOne}^\circ$};
   \node[above] at ($(zPos) + (-19,-3)$) {$\pgfmathprintnumber[precision=1]{\anglezVal}^\circ$};
+
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pZero) {};
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pOne) {};
+  \node[circle, draw=red, inner sep=0pt, minimum size=6pt] at (zPos) {};
 
   \end{axis}
   \end{tikzpicture}
@@ -108,8 +125,18 @@ Upgrading the controller to a PD-type controller which of the following angle co
 \choice \begin{minipage}{0.5\linewidth}
 \centering
 \ifprintanswers
-  \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne+\anglezValComp}
-  $\sum\theta =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
+  \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne+\anglezValComp} %false1
+  $\sum\theta =
+  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
+  +\pgfmathprintnumber[precision=1]{\anglezValComp}^\circ
+  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
+\else
+  $\sum{\theta}=
+  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
+  +\pgfmathprintnumber[precision=1]{\anglezValComp}^\circ
+  $
 \fi
 \begin{tikzpicture}
   \begin{axis}[
@@ -133,20 +160,212 @@ Upgrading the controller to a PD-type controller which of the following angle co
   \filldraw[red] (desired) circle (3pt);
 
   \draw[gray] (pZero) -- (desired);
-  \pic[draw,->,thick,angle eccentricity=-4,angle radius=0.2cm 
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
   ]{angle = origin--pZero--desired};
 
   \draw[gray] (pOne) -- (desired);
-  \pic[draw,->,thick,angle eccentricity=-4,angle radius=0.2cm 
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
   ]{angle = origin--pOne--desired};
 
   \draw[gray] (zPos) -- (desired);
-  \pic[draw,->,thick, angle eccentricity=-4,angle radius=0.2cm 
+  \pic[draw,thick, angle eccentricity=-4,angle radius=0.3cm 
   ]{angle = desired--zPos--leftPoint};
 
   \node[above] at ($(pZero) + (-20.5,-3)$) {$\pgfmathprintnumber[precision=1]{\angleZero}^\circ$};
   \node[above] at ($(pOne) + (-21,-3)$) {$\pgfmathprintnumber[precision=1]{\angleOne}^\circ$};
   \node[above] at ($(zPos) + (-19,-3)$) {$\pgfmathprintnumber[precision=1]{\anglezValComp}^\circ$};
+
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pZero) {};
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pOne) {};
+  \node[circle, draw=red, inner sep=0pt, minimum size=6pt] at (zPos) {};
+
+  \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\choice \begin{minipage}{0.5\linewidth}
+\centering
+\ifprintanswers
+  \pgfmathsetmacro{\angleSum}{\angleZeroComp+\angleOne+\anglezVal} %false2
+  $\sum\theta =
+  \pgfmathprintnumber[precision=1]{\angleZeroComp}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
+  +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
+  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
+\else
+  $\sum{\theta}=
+  \pgfmathprintnumber[precision=1]{\angleZeroComp}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
+  +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
+  $
+\fi
+
+\begin{tikzpicture}
+  \begin{axis}[
+    no marks,line width=1.4pt,
+    axis equal,
+    grid=both,
+    xlabel={$\Re$},
+    ylabel={$\Im$},
+    xmin=-20,xmax=0,ymin=-1,ymax=10
+    ]
+  \coordinate (origin) at (0,0);
+  \coordinate (pZero) at (-\pZero,0);
+  \coordinate (pOne) at (-\pOne,0);
+  \coordinate (zPos) at (-\zVal,0);
+  \coordinate (desired) at (-\sigmad,\omegad);
+  \coordinate (leftPoint) at (-21,0);
+  \coordinate (rightPoint) at (15,0);
+
+  \draw[gray] (-20,0) -- (20,0);
+  \draw[gray] (0,-20) -- (0,20);
+  \filldraw[black] (origin) circle (3pt);
+  \filldraw[red] (desired) circle (3pt);
+
+  \draw[gray] (pZero) -- (desired);
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
+  ]{angle = desired--pZero--pOne}; %{angle = desired--pZero--pOne} {angle = pOne--pZero--desired}
+
+  \draw[gray] (pOne) -- (desired);
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
+  ]{angle = origin--pOne--desired};
+
+  \draw[gray] (zPos) -- (desired);
+  \pic[draw,thick, angle eccentricity=-4,angle radius=0.3cm 
+  ]{angle = rightPoint--zPos--desired};
+
+  \node[above] at ($(pZero) + (-20.5,-3)$) {$\pgfmathprintnumber[precision=1]{\angleZeroComp}^\circ$};
+  \node[above] at ($(pOne) + (-21,-3)$) {$\pgfmathprintnumber[precision=1]{\angleOne}^\circ$};
+  \node[above] at ($(zPos) + (-19,-3)$) {$\pgfmathprintnumber[precision=1]{\anglezVal}^\circ$};
+
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pZero) {};
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pOne) {};
+  \node[circle, draw=red, inner sep=0pt, minimum size=6pt] at (zPos) {};
+
+  \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\choice \begin{minipage}{0.5\linewidth}
+\centering
+\ifprintanswers
+  \pgfmathsetmacro{\angleSum}{\angleZero+\angleOneComp+\anglezVal} %false3
+  $\sum\theta=
+  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOneComp}^\circ
+  +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
+  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
+\else
+  $\sum{\theta}=
+  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOneComp}^\circ
+  +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
+  $
+\fi
+\begin{tikzpicture}
+  \begin{axis}[
+    no marks,line width=1.4pt,
+    axis equal,
+    grid=both,
+    xlabel={$\Re$},
+    ylabel={$\Im$},
+    xmin=-20,xmax=0,ymin=-1,ymax=10
+    ]
+  \coordinate (origin) at (0,0);
+  \coordinate (pZero) at (-\pZero,0);
+  \coordinate (pOne) at (-\pOne,0);
+  \coordinate (zPos) at (-\zVal,0);
+  \coordinate (desired) at (-\sigmad,\omegad);
+  \coordinate (leftPoint) at (-21,0);
+  \coordinate (rightPoint) at (15,0);
+
+  \draw[gray] (-20,0) -- (20,0);
+  \draw[gray] (0,-20) -- (0,20);
+  \filldraw[black] (origin) circle (3pt);
+  \filldraw[red] (desired) circle (3pt);
+
+  \draw[gray] (pZero) -- (desired);
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
+  ]{angle = origin--pZero--desired};
+
+  \draw[gray] (pOne) -- (desired);
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
+  ]{angle = desired--pOne--zPos};
+
+  \draw[gray] (zPos) -- (desired);
+  \pic[draw,thick, angle eccentricity=-4,angle radius=0.3cm 
+  ]{angle = rightPoint--zPos--desired};
+
+  \node[above] at ($(pZero) + (-20.5,-3)$) {$\pgfmathprintnumber[precision=1]{\angleZero}^\circ$};
+  \node[above] at ($(pOne) + (-21,-3)$) {$\pgfmathprintnumber[precision=1]{\angleOneComp}^\circ$};
+  \node[above] at ($(zPos) + (-19,-3)$) {$\pgfmathprintnumber[precision=1]{\anglezVal}^\circ$};
+
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pZero) {};
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pOne) {};
+  \node[circle, draw=red, inner sep=0pt, minimum size=6pt] at (zPos) {};
+
+  \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\choice \begin{minipage}{0.5\linewidth}
+\centering
+\ifprintanswers
+  \pgfmathsetmacro{\angleSum}{\angleZero+\angleOne+\anglezVal}
+  $\sum\theta =
+  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
+  +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
+  =\pgfmathprintnumber[precision=1]{\angleSum}^\circ$ 
+\else
+  $\sum{\theta}=
+  \pgfmathprintnumber[precision=1]{\angleZero}^\circ
+  +\pgfmathprintnumber[precision=1]{\angleOne}^\circ
+  +\pgfmathprintnumber[precision=1]{\anglezVal}^\circ
+  $
+\fi
+\begin{tikzpicture}
+  \begin{axis}[
+    no marks,line width=1.4pt,
+    axis equal,
+    grid=both,
+    xlabel={$\Re$},
+    ylabel={$\Im$},
+    xmin=-20,xmax=0,ymin=-1,ymax=10
+    ]
+  \coordinate (origin) at (0,0);
+  \coordinate (pZero) at (-\pZero,0);
+  \coordinate (pOne) at (-\pOne,0);
+  \coordinate (zPos) at (-\zVal,0);
+  \coordinate (desired) at (-\sigmad,\omegad);
+  \coordinate (leftPoint) at (-21,0);
+  \coordinate (rightPoint) at (15,0);
+
+  \draw[gray] (-20,0) -- (20,0);
+  \draw[gray] (0,-20) -- (0,20);
+  \filldraw[black] (origin) circle (3pt);
+  \filldraw[red] (desired) circle (3pt);
+
+  \draw[gray] (pZero) -- (desired);
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
+  ]{angle = origin--pZero--desired};
+
+  \draw[gray] (pOne) -- (desired);
+  \pic[draw,thick,angle eccentricity=-4,angle radius=0.3cm 
+  ]{angle = origin--pOne--desired};
+
+  \draw[gray] (zPos) -- (desired);
+  \pic[draw,thick, angle eccentricity=-4,angle radius=0.3cm 
+  ]{angle = rightPoint--zPos--desired};
+
+
+  \node[above] at ($(pZero) + (-20.5,-3)$) {$\pgfmathprintnumber[precision=1]{\angleZero}^\circ$};
+  \node[above] at ($(pOne) + (-21,-3)$) {$\pgfmathprintnumber[precision=1]{\angleOne}^\circ$};
+  \node[above] at ($(zPos) + (-19,-3)$) {$\pgfmathprintnumber[precision=1]{\anglezVal}^\circ$};
+
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pZero) {};
+  \node[cross out, draw=black, inner sep=0pt, minimum size=6pt] at (pOne) {};
+  \node[circle, draw=red, inner sep=0pt, minimum size=6pt] at (zPos) {};
 
   \end{axis}
   \end{tikzpicture}
