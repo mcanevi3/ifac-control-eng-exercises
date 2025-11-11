@@ -1,6 +1,6 @@
 import os
 import re
- 
+
 def get_digits_before_dot(filename: str, n: int) -> list[int]:
     match = re.search(rf"(\d{{{n}}})\.\w+$", filename)
     if not match:
@@ -50,36 +50,21 @@ def get_student_ans(filename):
                 mapping[key] = value
     return mapping
 
-def compare_answers(correct: dict[int, str], student: dict[int, str]) -> dict[str, int]:
-    """
-    Compare two answer dictionaries like:
-      correct = {1:'E', 2:'E', 3:'D'}
-      student = {1:'A', 2:'A', 3:'C'}
-    Returns counts of true, false, and empty answers.
-    """
-    result = {'true': 0, 'false': 0, 'empty': 0}
+def compute_points(correct: dict[int, str],
+                   student: dict[int, str],
+                   points: dict[int, int]) -> dict[int | str, int]:
+    result = {}
+    total = 0
 
     for key, correct_val in correct.items():
         student_val = student.get(key, '').strip().upper()
-
-        if student_val == '':
-            result['empty'] += 1
-        elif student_val == correct_val.upper():
-            result['true'] += 1
+        if student_val=='':
+            result[key] = ''
         else:
-            result['false'] += 1
-
+            point = 0
+            if student_val == correct_val.upper():
+                point = points.get(key, 0)
+            result[key] = point
+            total += point
+    result['total'] = total
     return result
-
-file_list=studentfiles_list()
-
-student_file=file_list[0]
-student_ans=get_student_ans(student_file)
-
-digits=get_digits_before_dot(student_file,2)
-correct_ans=get_keylist_ans(digits)
-
-print(student_ans)
-print(correct_ans)
-res=compare_answers(student=student_ans,correct=correct_ans)
-print(res)
