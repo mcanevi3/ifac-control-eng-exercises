@@ -19,3 +19,5 @@ do
 			eval "rm digits.tex"
 done
 done 
+
+# cp FilesSol/*.keylist ../auto_grader/keyfiles/
