@@ -52,50 +52,58 @@ stabTot=stab1&stab2&stab3&stab4;
 solReg=@(kp,ki,kvec)(kp>=kvec(1))&(kp<=kvec(2))&(ki>=kvec(3))&(ki<=kvec(4));
 stabSol=solReg(kpmat,kimat,kstable);
 
+colors = [
+    0.6, 1.0, 0.6;  % Region 1
+    0.3, 0.9, 0.3;  % Region 2
+    0.0, 0.7, 0.0;  % Region 3
+    0.0, 0.5, 0.0;  % Region 4
+    0.0, 1.0, 0.0   % Intersection
+];
+
 figure(1);clf;hold on;grid on;
 xlabel("k_p");ylabel("k_i");title("Stability");
 contourf(kpmat, kimat, stab1, [0.5 1], 'LineColor','none',...
-'FaceColor','r','FaceAlpha',0.25);
+'FaceColor',colors(1,:),'FaceAlpha',1);
 contourf(kpmat, kimat, stab2, [0.5 1], 'LineColor','none',...
-'FaceColor','g','FaceAlpha',0.25);
+'FaceColor',colors(2,:),'FaceAlpha',1);
 contourf(kpmat, kimat, stab3, [0.5 1], 'LineColor','none',...
-'FaceColor','b','FaceAlpha',0.25);
+'FaceColor',colors(3,:),'FaceAlpha',1);
 contourf(kpmat, kimat, stab4, [0.5 1], 'LineColor','none',...
-'FaceColor','m','FaceAlpha',0.25);
+'FaceColor',colors(4,:),'FaceAlpha',1);
 
 contourf(kpmat, kimat, stabTot, [0.5 1], 'LineColor','none',...
-'FaceColor','k','FaceAlpha',1);
+'FaceColor',colors(5,:),'FaceAlpha',1);
 
 % fill([kpsolmin kpsolmax kpsolmax kpsolmin], ...
 %      [kisolmin kisolmin kisolmax kisolmax], ...
 %% stable
 fill([kstable(1) kstable(2) kstable(2) kstable(1)], ...
      [kstable(3) kstable(3) kstable(4) kstable(4)], ...
-     [1 1 1], 'FaceAlpha', 0.8, 'EdgeColor', 'none');
+     [1 1 1], 'FaceAlpha', 1, 'EdgeColor', 'k');
 
 %% unstable-1
 kunstable=kunstable1;
 fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
 [kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
-     [1 0 0], 'FaceAlpha', 0.6, 'EdgeColor', 'none');
+     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'k');
 
 %% unstable-2
 kunstable=kunstable2;
 fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
 [kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
-     [1 0 0], 'FaceAlpha', 0.6, 'EdgeColor', 'none');
+     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'k');
 
 %% unstable-3
 kunstable=kunstable3;
 fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
 [kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
-     [1 0 0], 'FaceAlpha', 0.6, 'EdgeColor', 'none');
+     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'k');
 
 %% unstable-4
 kunstable=kunstable4;
 fill([kunstable(1) kunstable(2) kunstable(2) kunstable(1)],...
 [kunstable(3) kunstable(3) kunstable(4) kunstable(4)], ...
-     [1 0 0], 'FaceAlpha', 0.6, 'EdgeColor', 'none');
+     [1 0 0], 'FaceAlpha', 1, 'EdgeColor', 'k');
 
 legend("p_1(s)","p_2(s)","p_3(s)","p_4(s)","stability","solution region","unstable")
 
