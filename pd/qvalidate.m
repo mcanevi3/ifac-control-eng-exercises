@@ -18,10 +18,10 @@ for i=1:100
     angleFalse1=fun_angleFalse1(x0val,x1val);
     angleFalse2=fun_angleFalse2(x0val,x1val);
     angleFalse3=fun_angleFalse3(x0val,x1val);
-    angleFalse4=fun_angleFalse4(x0val,x1val);
+    % angleFalse4=fun_angleFalse4(x0val,x1val);
     angleCorrect=fun_angleCorrect(x0val,x1val);
 
-    answers=[angleFalse1,angleFalse2,angleFalse3,angleFalse4,angleCorrect];
+    answers=[angleFalse1,angleFalse2,angleFalse3,angleCorrect]; %angleFalse4
     falseCount=sum(double(abs(answers(1:end-1)-180.00)<1e-4));
     correctCount=sum(double(abs(answers(end)-180.00)<1e-4));
     allUnique=length(unique(answers))==length(answers);

@@ -47,4 +47,4 @@ fun_angleCorrect=matlabFunction(angleZero+angleOne-anglezVal);
 fun_angleFalse1=matlabFunction(angleZero+angleOne+180-anglezVal);
 fun_angleFalse2=matlabFunction(180-angleZero+angleOne+anglezVal);
 fun_angleFalse3=matlabFunction(angleZero+180-angleOne+anglezVal);
-fun_angleFalse4=matlabFunction(angleZero+angleOne+anglezVal);
+% fun_angleFalse4=matlabFunction(angleZero+angleOne+anglezVal);
