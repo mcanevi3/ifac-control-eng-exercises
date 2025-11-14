@@ -1,0 +1,1 @@
+cp FilesSol/*.keylist ../auto_grader/keyfiles/
