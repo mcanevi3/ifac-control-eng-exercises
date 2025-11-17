@@ -1,0 +1,22 @@
+{
+    "class":"KON314E",
+    "comment":"End-of-year GPA",
+    "grades":
+    [
+    {"year":2013,"avg":54,"semester":"Spring"},
+    {"year":2014,"avg":56,"semester":"Spring"},
+    {"year":2015,"avg":56,"semester":"Spring"},
+    {"year":2016,"avg":51,"semester":"Spring"},
+    {"year":2016,"avg":57,"semester":"Fall"},
+    {"year":2017,"avg":59,"semester":"Spring"},
+    {"year":2017,"avg":58,"semester":"Fall"},
+    {"year":2018,"avg":57,"semester":"Fall"},
+    {"year":2019,"avg":51,"semester":"Fall"},
+    {"year":2020,"avg":13,"semester":"Spring"},
+    {"year":2020,"avg":49,"semester":"Fall"},
+    {"year":2020,"avg":10,"semester":"Spring"},
+    {"year":2021,"avg":46,"semester":"Spring"},
+    {"year":2021,"avg":51,"semester":"Fall"},
+    {"year":2022,"avg":50,"semester":"Spring"}
+]
+}
