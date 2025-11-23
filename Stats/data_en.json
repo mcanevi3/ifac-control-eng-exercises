@@ -1,0 +1,10 @@
+[
+    {
+        "year":2019,
+        "grades":{
+            "final":{"avg":64.60,"stddev":26.68},
+            "pre":{"avg":37.36,"stddev":22.02},
+            "post":{"avg":45.38,"stddev":18.22}
+        }
+    }
+]
