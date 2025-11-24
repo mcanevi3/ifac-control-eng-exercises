@@ -6,5 +6,53 @@
             "pre":{"avg":37.36,"stddev":22.02},
             "post":{"avg":45.38,"stddev":18.22}
         }
+    },
+    {
+        "year":2020,
+        "grades":{
+            "final":{"avg":46.06,"stddev":22.63},
+            "pre":{"avg":41.62,"stddev":18.24},
+            "post":{"avg":50.88,"stddev":15.16}
+        }
+    },
+    {
+        "year":2021,
+        "grades":{
+            "final":{"avg":24.07,"stddev":19.78},
+            "pre":{"avg":56.40,"stddev":21.72},
+            "post":{"avg":45.64,"stddev":14.75}
+        }
+    },
+    {
+        "year":2022,
+        "grades":{
+            "final":{"avg":32.24,"stddev":21.81},
+            "pre":{"avg":67.75,"stddev":17.73},
+            "post":{"avg":52.96,"stddev":15.98}
+        }
+    },
+    {
+        "year":2023,
+        "grades":{
+            "final":{"avg":32.95,"stddev":13.75},
+            "pre":{"avg":70.95,"stddev":21.04},
+            "post":{"avg":51.04,"stddev":22.59}
+        }
+    },
+    {
+        "year":2024,
+        "grades":{
+            "final":{"avg":43.72,"stddev":23.22},
+            "pre":{"avg":56.86,"stddev":24.49},
+            "post":{"avg":51.48,"stddev":12.93}
+        }
+    },
+    {
+        "year":2025,
+        "grades":{
+            "final":{"avg":56.67,"stddev":26.48},
+            "pre":{"avg":53.75,"stddev":14.80},
+            "post":{"avg":44.63,"stddev":14.04}
+        }
     }
 ]

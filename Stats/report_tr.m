@@ -29,15 +29,15 @@ subplot(3,1,2);cla;hold on;grid on;legend("show");ax2=gca;
 subplot(3,1,3);cla;hold on;grid on;legend("show");ax3=gca;
 bar(ax1,years,pretest_avg,'k','DisplayName','Avg')
 bar(ax1,years,pretest_stddev,'r','DisplayName','Stddev')
-title(ax1,"Pretest");
+title(ax1,"KON314:Pretest");
 
 bar(ax2,years,posttest_avg,'k','DisplayName','Avg')
 bar(ax2,years,posttest_stddev,'r','DisplayName','Stddev')
-title(ax2,"Posttest");
+title(ax2,"KON314:Posttest");
 
 bar(ax3,years,final_avg,'k','DisplayName','Avg')
 bar(ax3,years,final_stddev,'r','DisplayName','Stddev')
-title(ax3,"Final");
+title(ax3,"KON314:Final");
 
 %% Gauss distribution
 grades_vec = 0:0.01:100;
@@ -47,9 +47,9 @@ figure(2);clf;
 subplot(3,1,1);cla;hold on;grid on;ax1=gca;%legend("show");
 subplot(3,1,2);cla;hold on;grid on;ax2=gca;%legend("show");
 subplot(3,1,3);cla;hold on;grid on;ax3=gca;%legend("show");
-title(ax1,"Pretest");
-title(ax2,"Posttest");
-title(ax3,"Final");
+title(ax1,"KON314:Pretest");
+title(ax2,"KON314:Posttest");
+title(ax3,"KON314:Final");
 
 view(ax1,16,18);
 view(ax2,16,18);
@@ -67,3 +67,13 @@ for i=1:N
     vertices=[years(i)*ones(size(grades_vec')),grades_vec',yvec'];
     patch(ax3,"Vertices",vertices,"Faces",1:length(yvec),'FaceColor',colors{i},'EdgeColor','none','FaceAlpha',0.5,'DisplayName',num2str(years(i)));
 end
+
+figure(1);
+exportgraphics(gcf, "avg_tr.pdf", ...
+ContentType="vector", ...
+BackgroundColor="none");
+
+figure(2);
+exportgraphics(gcf, "gauss_tr.pdf", ...
+ContentType="image", ...
+BackgroundColor="none");
