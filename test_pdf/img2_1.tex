@@ -20,15 +20,18 @@
   ylabel={$y(t)$},
   grid=both,
   domain=0:\tfinone,
-  samples=100,
+  samples=300,
   thick,
   xticklabel style={
       /pgf/number format/fixed,
       /pgf/number format/precision=1
   },
+  scaled ticks=false,
   yticklabel style={
-      /pgf/number format/fixed,
-      /pgf/number format/precision=1
+        /pgf/number format/.try,
+        /pgf/number format/fixed,
+        /pgf/number format/fixed zerofill,
+        /pgf/number format/precision=2 % <-- Sets two decimal places
   },
 ]
 \addplot[blue]{myresp(x)};
