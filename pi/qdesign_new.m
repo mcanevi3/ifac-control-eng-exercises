@@ -99,6 +99,7 @@ origUnits = get(fig, 'Units');
 set(fig, 'Units', 'inches');
 pos = get(fig, 'Position');
 aspectRatio = pos(4)/pos(3); % height / width
+aspectRatio=aspectRatio/1.5;
 set(fig, 'Position', [pos(1), pos(2), targetWidth, targetWidth*aspectRatio]);
 set(fig, 'Units', origUnits);
 set(fig, 'PaperUnits', 'inches', ...
